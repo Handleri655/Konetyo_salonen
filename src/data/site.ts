@@ -1,8 +1,11 @@
+const origin = (import.meta.env.SITE ?? "https://handleri655.github.io").replace(/\/$/, "");
+const base = (import.meta.env.BASE_URL ?? "/").replace(/\/$/, "");
+
 export const site = {
   name: "Konetyö M. Salonen Oy",
   shortName: "Konetyö M. Salonen",
   tagline: "Maanrakennusta, huoltoa ja avainpalvelut Pellossa",
-  url: "https://handleri655.github.io/Konetyo_salonen",
+  url: `${origin}${base}`,
   email: "matti@konetyosalonen.fi",
   phone: "044 991 6035",
   phoneHref: "tel:+358449916035",

@@ -1,6 +1,7 @@
 # Konetyö M. Salonen Oy — verkkosivut
 
-Sivusto GitHub Pagesissa: [https://handleri655.github.io/Konetyo_salonen](https://handleri655.github.io/Konetyo_salonen)
+- GitHub Pages: [https://handleri655.github.io/Konetyo_salonen](https://handleri655.github.io/Konetyo_salonen)
+- Vercel: [https://konetyo-salonen.vercel.app](https://konetyo-salonen.vercel.app)
 
 ## Paikallinen esikatselu
 
