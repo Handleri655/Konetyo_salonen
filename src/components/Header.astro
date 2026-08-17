@@ -1,0 +1,119 @@
+---
+import Logo from "./Logo.astro";
+import { nav, services, site } from "../data/site";
+import { currentPath, withBase } from "../lib/paths";
+
+const path = currentPath(Astro.url.pathname);
+const serviceOpen = services.some((s) => path === `/${s.slug}`) || path === "/palvelut";
+---
+
+<div class="topbar">
+  <div class="wrap">
+    <span>{site.hours.hall}</span>
+    <span>
+      <a href={site.phoneHref}>{site.phone}</a>
+      ·
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="logo" href={withBase("/")} aria-label={site.name}>
+      <Logo />
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Avaa valikko">
+      <span></span>
+    </button>
+    <nav class="nav" id="site-nav">
+      {
+        nav.map((item) =>
+          item.href === "/palvelut" ? (
+            <div class="nav-item" data-dropdown>
+              <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="palvelut-menu"
+                aria-current={serviceOpen ? "page" : undefined}
+              >
+                {item.label}
+              </button>
+              <div class="dropdown" id="palvelut-menu">
+                <div class="dropdown-panel">
+                  <a href={withBase(item.href)} aria-current={path === item.href ? "page" : undefined}>
+                    Kaikki palvelut
+                  </a>
+                  {services.map((service) => (
+                    <a href={withBase(`/${service.slug}`)} aria-current={path === `/${service.slug}` ? "page" : undefined}>
+                      {service.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a href={withBase(item.href)} aria-current={path === item.href ? "page" : undefined}>
+              {item.label}
+            </a>
+          ),
+        )
+      }
+      {
+        path === "/en" ? (
+          <a href={withBase("/")} hreflang="fi">
+            FI
+          </a>
+        ) : (
+          <a href={withBase("/en")} hreflang="en">
+            EN
+          </a>
+        )
+      }
+      <a class="btn btn-primary" href={withBase("/yhteystiedot")}>Pyydä tarjous</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.querySelector(".menu-btn");
+  const nav = document.querySelector("#site-nav");
+  const dropdown = document.querySelector("[data-dropdown]");
+  const toggle = dropdown?.querySelector(".nav-toggle");
+
+  const setNavOpen = (open: boolean) => {
+    nav?.classList.toggle("open", open);
+    menuBtn?.setAttribute("aria-expanded", open ? "true" : "false");
+  };
+
+  const setDropdownOpen = (open: boolean) => {
+    dropdown?.classList.toggle("open", open);
+    toggle?.setAttribute("aria-expanded", open ? "true" : "false");
+  };
+
+  menuBtn?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setNavOpen(!nav?.classList.contains("open"));
+  });
+
+  toggle?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    setDropdownOpen(!dropdown?.classList.contains("open"));
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target as Node | null;
+    if (dropdown && target && !dropdown.contains(target)) setDropdownOpen(false);
+    if (nav && menuBtn && target && !nav.contains(target) && !menuBtn.contains(target)) {
+      setNavOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setDropdownOpen(false);
+      setNavOpen(false);
+    }
+  });
+</script>

@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactForm from "../components/ContactForm.astro";
+import PageHero from "../components/PageHero.astro";
+import { site, notices } from "../data/site";
+
+const maps = `https://www.openstreetmap.org/?mlat=66.76396&mlon=23.94873#map=16/66.76396/23.94873`;
+const embed =
+  "https://www.openstreetmap.org/export/embed.html?bbox=23.9287%2C66.7539%2C23.9687%2C66.7740&layer=mapnik&marker=66.76396%2C23.94873";
+---
+
+<Layout
+  title="Yhteystiedot | Konetyö M. Salonen Oy"
+  description="Ota yhteyttä: Juusonkankaantie 1, 95700 Pello. Puh. 044 991 6035, matti@konetyosalonen.fi. Jätä tarjouspyyntö."
+>
+  <PageHero
+    kicker="Yhteystiedot"
+    title="Soita, tule hallille tai jätä viesti"
+    lede="Vastataan tarjouspyyntöihin mahdollisimman pian. Kiireellisissä töissä soita suoraan."
+    image="/images/lappi.jpg"
+    imageAlt="Talvinen metsäpolku Pellon seudulla"
+  />
+
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <h2>{site.name}</h2>
+        <p>
+          {site.address.street}<br />
+          {site.address.postalCode} {site.address.city}
+        </p>
+        <ul class="list">
+          <li>Puhelin: <a href={site.phoneHref}>{site.phone}</a></li>
+          <li>Sähköposti: <a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li>{site.hours.hall}</li>
+          <li>{site.hours.extra}</li>
+          <li>Y-tunnus {site.yTunnus}</li>
+          <li>Postiosoite: {site.postalAddress.street}, {site.postalAddress.postalCode} {site.postalAddress.city}</li>
+        </ul>
+        <div class="actions mt">
+          <a class="btn btn-primary" href={site.phoneHref}>Soita</a>
+          <a class="btn btn-line" href={maps} rel="noreferrer">Avaa kartta</a>
+        </div>
+
+        <h3 class="mt-lg">Myytävänä</h3>
+        {
+          notices.slice(1).map((item) => (
+            <p>
+              <strong>{item.title}.</strong> {item.text}
+            </p>
+          ))
+        }
+      </div>
+      <div class="card form-card">
+        <h2>Tarjouspyyntö</h2>
+        <p>Jätä yhteystiedot, niin otamme sinuun yhteyttä.</p>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="map-frame">
+        <iframe class="map" title="Kartta, Juusonkankaantie 1 Pello" src={embed} loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+</Layout>

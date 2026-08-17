@@ -1,0 +1,10 @@
+---
+import { site } from "../data/site";
+import { withBase } from "../lib/paths";
+---
+
+<img class="logo-img" src={withBase("/logo.webp")} alt="" width="220" height="110" />
+<span class="logo-text">
+  <b>{site.shortName}</b>
+  <span>Pello · Lappi</span>
+</span>

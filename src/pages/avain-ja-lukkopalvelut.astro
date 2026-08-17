@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+import PageHero from "../components/PageHero.astro";
+import { services, site } from "../data/site";
+import { withBase } from "../lib/paths";
+
+const service = services.find((s) => s.slug === "avain-ja-lukkopalvelut")!;
+---
+
+<Layout
+  title="Avain- ja lukkopalvelut Pello | Konetyö M. Salonen"
+  description="Avaimet, lukkojen asennus ja korjaus sekä kellojen patterien vaihto Pellossa. Halli avoinna arkisin klo 8–15."
+  image={service.image}
+>
+  <PageHero
+    kicker={service.kicker}
+    title="Avain- ja lukkopalvelut"
+    lede="Teemme avaimia, korjaamme ja asennamme lukkoja sekä vaihdamme kellojen patterit. Tule hallille arkisin tai sovi käynti toiseen aikaan."
+    image={service.image}
+    imageAlt={service.alt}
+  />
+
+  <section class="section">
+    <div class="wrap split">
+      <img src={withBase(service.image)} alt={service.alt} width="1600" height="1066" />
+      <div>
+        <h2>Halli avoinna arkisin klo 8–15</h2>
+        <p>
+          Avain- ja lukkopalvelut palvelevat samasta osoitteesta kuin konetyöt:
+          {site.address.street}, {site.address.postalCode} {site.address.city}.
+        </p>
+        <ul class="list">
+          {service.items.map((item) => <li>{item}</li>)}
+        </ul>
+        <p>{site.hours.extra}.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Varaa avain- tai lukkotyö" />
+</Layout>

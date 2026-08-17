@@ -1,0 +1,23 @@
+---
+import { withBase } from "../lib/paths";
+
+interface Props {
+  kicker: string;
+  title: string;
+  lede?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const { kicker, title, lede, image, imageAlt = "" } = Astro.props;
+---
+
+<section class:list={["page-hero", image && "has-image"]}>
+  {image && <img src={withBase(image)} alt={imageAlt} width="1800" height="900" />}
+  <div class="wrap page-hero-content">
+    <p class="kicker">{kicker}</p>
+    <h1>{title}</h1>
+    {lede && <p class="lede">{lede}</p>}
+    <slot />
+  </div>
+</section>

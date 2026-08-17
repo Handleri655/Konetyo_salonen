@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+import PageHero from "../components/PageHero.astro";
+import { services, site } from "../data/site";
+import { withBase } from "../lib/paths";
+
+const service = services.find((s) => s.slug === "kiinteistohuolto")!;
+---
+
+<Layout
+  title="Kiinteistöhuolto Pello | Konetyö M. Salonen"
+  description="Kiinteistönhuolto, lumityöt, kattohuollot, rännien puhdistus ja teiden kunnossapito Pellossa. Myös Kiinteistöhuolto Salonen ja Lapin kourupuhdistus."
+  image={service.image}
+>
+  <PageHero
+    kicker={service.kicker}
+    title="Kiinteistöhuolto ja kunnossapito"
+    lede="Hoidamme kiinteistöt, pihat, tiet ja katot ympäri vuoden. Talvella lumityöt ja lumenpudotukset, kesällä lakaisut, puun kaadot ja kattohuollot."
+    image={service.image}
+    imageAlt={service.alt}
+  />
+
+  <section class="section">
+    <div class="wrap split">
+      <img src={withBase(service.image)} alt={service.alt} width="1600" height="1066" />
+      <div>
+        <h2>Talot, tiet ja katot samalta tekijältä</h2>
+        <p>
+          Kiinteistönhoito kuuluu samaan yritykseen kuin maanrakennus. Se tarkoittaa, että pihan
+          kunnossapito, lumityöt ja koneelliset työt hoituvat ilman erillistä ketjua.
+        </p>
+        <p>
+          Aputoiminiminä {site.tradeNames.join(" ja ")} — kourujen puhdistus ja kiinteistötyöt
+          löytyvät siis samasta numerosta.
+        </p>
+        <ul class="list">
+          {service.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Sovi huolto tai lumityö" />
+</Layout>

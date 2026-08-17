@@ -1,0 +1,164 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { site, services, notices, gallery } from "../data/site";
+import { withBase } from "../lib/paths";
+
+const [featured, ...rest] = services;
+---
+
+<Layout
+  title="Kaivinkoneurakointi Pello | Konetyö M. Salonen Oy"
+  description="Maanrakennus, kiinteistöhuolto, konevuokraus sekä avain- ja lasipalvelut Pellossa ja muualla Lapissa. Pyydä tarjous."
+>
+  <section class="hero">
+    <img src={withBase("/images/hero.jpg")} alt="Pyöräkuormaaja työssä" width="2000" height="1333" />
+    <div class="wrap hero-content">
+      <p class="kicker">Konetyö M. Salonen Oy</p>
+      <h1>Kaivuuta, huoltoa ja avaimet. Pellosta koko Lappiin.</h1>
+      <p class="lede">
+        Teemme maanrakennustyöt, kiinteistöjen kunnossapidon ja konevuokrauksen.
+        Hallilta saat myös avain- ja lukkopalvelut sekä lasit, peilit ja plexit mittatilauksena.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href={site.phoneHref}>Soita {site.phone}</a>
+        <a class="btn btn-ghost" href={withBase("/yhteystiedot")}>Pyydä tarjous</a>
+      </div>
+      <div class="hero-meta">
+        <span class="chip">{site.area}</span>
+        <span class="chip">{site.hours.hall}</span>
+        <span class="chip">Kubota-kaivinkone</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Palvelut</p>
+          <h2>Yksi paikallinen tekijä, monta työtä</h2>
+        </div>
+        <a class="btn btn-line" href={withBase("/palvelut")}>Kaikki palvelut</a>
+      </div>
+      <div class="bento">
+        <article class="card featured">
+          <a class="cover" href={withBase(`/${featured.slug}`)}>
+            <img src={withBase(featured.image)} alt={featured.alt} width="900" height="720" />
+          </a>
+          <div class="card-body">
+            <p class="kicker">{featured.kicker}</p>
+            <h3>
+              <a href={withBase(`/${featured.slug}`)}>{featured.title}</a>
+            </h3>
+            <p>{featured.summary}</p>
+            <a class="card-link" href={withBase(`/${featured.slug}`)}>Lue lisää</a>
+          </div>
+        </article>
+        {
+          rest.map((service) => (
+            <article class="card">
+              <a class="cover" href={withBase(`/${service.slug}`)}>
+                <img src={withBase(service.image)} alt={service.alt} width="800" height="500" />
+              </a>
+              <div class="card-body">
+                <p class="kicker">{service.kicker}</p>
+                <h3>
+                  <a href={withBase(`/${service.slug}`)}>{service.title}</a>
+                </h3>
+                <p>{service.summary}</p>
+                <a class="card-link" href={withBase(`/${service.slug}`)}>Lue lisää</a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap split">
+      <img src={withBase("/images/lappi.jpg")} alt="Konetyö M. Salosen halli Pellossa" width="1600" height="900" />
+      <div>
+        <p class="kicker">Paikallinen urakoitsija</p>
+        <h2>Pellosta liikkeelle, Lappi työalueena</h2>
+        <p>
+          Konetyö M. Salonen on Pellon kunnassa toimiva maanrakennus- ja huoltoyritys.
+          Toteutamme kaivuutyöt, talojen ja teiden perustukset, kaapeliojat, salaojitukset
+          ja kiinteistönhoitotyöt. Kalustona on Kubota-kaivinkone.
+        </p>
+        <p>
+          Samaa hallia käyttävät avain- ja lukkopalvelut sekä lasien mittatilaukset.
+          Aputoiminiminä {site.tradeNames.join(" ja ")}.
+        </p>
+        <div class="stats">
+          <div class="stat">
+            <b>Pello</b>
+            <span>kotipaikka</span>
+          </div>
+          <div class="stat">
+            <b>Lappi</b>
+            <span>toiminta-alue</span>
+          </div>
+          <div class="stat">
+            <b>8–15</b>
+            <span>halli arkisin</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Ajankohtaista</p>
+          <h2>Uutta hallilla ja myynnissä</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        {
+          notices.map((item) => (
+            <article class="card notice">
+              {item.title.includes("juhlateltta") && (
+                <a class="cover" href={withBase(item.href)}>
+                  <img src={withBase("/images/teltta.jpg")} alt="5 x 8 m juhlateltta" width="800" height="500" />
+                </a>
+              )}
+              <div class="card-body">
+                <p class="label">{item.label}</p>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                <a class="card-link" href={withBase(item.href)}>Kysy lisää</a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Kuvia</p>
+          <h2>Kalusto, halli ja Lappi</h2>
+        </div>
+      </div>
+      <div class="gallery">
+        {
+          gallery.map((item) => (
+            <figure>
+              <img src={withBase(item.src)} alt={item.alt} width="400" height="400" />
+              <figcaption>{item.caption}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

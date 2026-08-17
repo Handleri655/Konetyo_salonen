@@ -1,0 +1,62 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+import PageHero from "../components/PageHero.astro";
+import { services } from "../data/site";
+import { withBase } from "../lib/paths";
+
+const service = services.find((s) => s.slug === "kaivinkoneurakointi")!;
+---
+
+<Layout
+  title="Kaivinkonepalvelut Pello | Konetyö M. Salonen"
+  description="Kaivuutyöt, talojen ja teiden perustukset, kaapeliojat, salaojitukset ja energiapuun korjuu Pellossa ja muualla Lapissa."
+  image="/images/kaivinkone.jpg"
+>
+  <PageHero
+    kicker={service.kicker}
+    title="Kaivinkoneurakointi Pellossa ja Lapissa"
+    lede="Toteutamme kaivuutyöt, pohjat, kaapeliojat ja salaojitukset Kubota-kaivinkoneella. Työt sujuvat niin pihalla kuin maakaapeloinnissa."
+    image="/images/kaivinkone.jpg"
+    imageAlt={service.alt}
+  />
+
+  <section class="section">
+    <div class="wrap split">
+      <img src={withBase("/images/kaivinkone.jpg")} alt="Kubota-kaivinkone lumitöissä" width="1800" height="1200" />
+      <div>
+        <h2>Maanrakennusta vankalla otteella</h2>
+        <p>
+          Konetyö M. Salonen tekee kaivinkonetyöt Pellon kunnassa ja tarvittaessa koko Lapin alueella.
+          Kalustona on Kubota-kaivinkone, jolla hoituvat ojien kaivuut, talojen pohja- ja pihatyöt
+          sekä vaativammat urakat.
+        </p>
+        <p>
+          Olemme erikoistuneet maakaapelointiin, mutta teemme myös muut alan työt ammattitaitoisesti.
+        </p>
+        <ul class="list">
+          {service.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap grid-3">
+      <article class="card notice">
+        <h3>Kaapeliojat</h3>
+        <p>Maakaapelointi ja kaapeliojien kaivuut tontilla, tiellä ja maastossa.</p>
+      </article>
+      <article class="card notice">
+        <h3>Perustukset</h3>
+        <p>Talojen ja teiden pohjatyöt, kaivuut ja pihan viimeistely.</p>
+      </article>
+      <article class="card notice">
+        <h3>Energiapuu</h3>
+        <p>Energiapuun korjuu giljotiinikouralla, kun työ vaatii konetta metsässä.</p>
+      </article>
+    </div>
+  </section>
+
+  <CtaBand title="Pyydä tarjous kaivinkonetyöstä" />
+</Layout>

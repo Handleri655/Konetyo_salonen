@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+---
+
+<Layout
+  title="Tietosuoja | Konetyö M. Salonen Oy"
+  description="Konetyö M. Salonen Oy:n tietosuojaseloste yhteydenottolomakkeelle ja asiakasviestinnälle."
+>
+  <PageHero kicker="Rekisteri" title="Tietosuojaseloste" lede="Miten käsittelemme yhteydenottojen henkilötietoja." />
+
+  <section class="section">
+    <div class="wrap prose">
+      <h2>Rekisterinpitäjä</h2>
+      <p>
+        {site.name}, Y-tunnus {site.yTunnus}<br />
+        {site.address.street}, {site.address.postalCode} {site.address.city}<br />
+        {site.email}, {site.phone}
+      </p>
+
+      <h2>Mitä tietoja keräämme</h2>
+      <p>
+        Yhteydenottolomakkeella kysytään nimeä, sähköpostia, puhelinnumeroa, paikkakuntaa ja viestin
+        sisältöä. Puhelin- ja sähköpostiyhteydenotoissa käsittelemme samoja tietoja siltä osin kuin
+        ne annetaan.
+      </p>
+
+      <h2>Miksi tietoja tarvitaan</h2>
+      <p>
+        Tietoja käytetään tarjouspyynnön tai muun yhteydenoton käsittelyyn, työn sopimiseen ja
+        asiakaspalveluun. Oikeusperuste on sopimuksen täytäntöönpano tai sitä edeltävät toimet sekä
+        oikeutettu etu vastata yhteydenottoon.
+      </p>
+
+      <h2>Säilytys ja luovutus</h2>
+      <p>
+        Tietoja säilytetään vain niin kauan kuin tarjouspyynnön hoitaminen, mahdollinen urakka tai
+        kirjanpitovelvoitteet edellyttävät. Lomakevälitys voi kulkea Formsubmit-palvelun kautta
+        sähköpostiimme. Tietoja ei myydä eikä käytetä markkinointiprofiileihin tällä sivustolla.
+      </p>
+
+      <h2>Evästeet</h2>
+      <p>
+        Sivusto ei käytä seurantaevästeitä. Selaimen välttämättömät tekniset toiminnot voivat
+        tallentaa istuntotietoja.
+      </p>
+
+      <h2>Oikeutesi</h2>
+      <p>
+        Voit pyytää pääsyä tietoihin, niiden oikaisua tai poistoa sekä rajoittaa käsittelyä.
+        Yhteydenotot: {site.email}. Voit myös tehdä valituksen Tietosuojavaltuutetun toimistolle.
+      </p>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+import { withBase } from "../lib/paths";
+---
+
+<Layout
+  title="Kiitos yhteydenotosta | Konetyö M. Salonen Oy"
+  description="Tarjouspyyntö on lähetetty. Palaamme asiaan mahdollisimman pian."
+>
+  <PageHero
+    kicker="Lähetetty"
+    title="Kiitos, viesti on perillä"
+    lede={`Palaamme asiaan mahdollisimman pian. Jos asia on kiireellinen, soita ${site.phone}.`}
+    image="/images/lappi.jpg"
+    imageAlt="Talvinen metsäpolku"
+  >
+    <div class="actions">
+      <a class="btn btn-primary" href={site.phoneHref}>Soita</a>
+      <a class="btn btn-ghost" href={withBase("/")}>Etusivulle</a>
+    </div>
+  </PageHero>
+</Layout>

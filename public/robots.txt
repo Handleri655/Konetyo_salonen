@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://handleri655.github.io/Konetyo_salonen/sitemap-index.xml

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Konetyö M. Salonen">
+  <rect width="64" height="64" rx="10" fill="#1c2a24"/>
+  <path d="M12 44h40v6H12z" fill="#c24e1d"/>
+  <path d="M18 18h10l8 14h10v8H32L22 26H18z" fill="#f4efe6"/>
+  <circle cx="22" cy="47" r="4.5" fill="#f4efe6"/>
+  <circle cx="46" cy="47" r="4.5" fill="#f4efe6"/>
+</svg>

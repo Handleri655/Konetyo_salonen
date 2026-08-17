@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { withBase } from "../lib/paths";
+---
+
+<Layout title="Sivua ei löytynyt | Konetyö M. Salonen Oy" description="Pyydettyä sivua ei ole.">
+  <PageHero
+    kicker="404"
+    title="Sivua ei löytynyt"
+    lede="Linkki voi olla vanha. Siirry etusivulle tai palveluihin."
+    image="/images/lappi.jpg"
+    imageAlt="Halli Juusonkankaantiellä"
+  >
+    <div class="actions">
+      <a class="btn btn-primary" href={withBase("/")}>Etusivu</a>
+      <a class="btn btn-ghost" href={withBase("/palvelut")}>Palvelut</a>
+    </div>
+  </PageHero>
+</Layout>

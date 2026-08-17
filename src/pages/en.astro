@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+import { withBase } from "../lib/paths";
+---
+
+<Layout
+  lang="en"
+  title="Machine work in Pello, Lapland | Konetyö M. Salonen Oy"
+  description="Excavator work, property maintenance, tool rental, key cutting and custom glass in Pello, Finnish Lapland."
+>
+  <PageHero
+    kicker="Pello · Lapland"
+    title="Earthworks, maintenance, keys and glass"
+    lede="Konetyö M. Salonen Oy is a local contractor in Pello. We do excavator work, property upkeep, equipment rental, locksmith jobs and made-to-measure glass, mirrors and plexiglass."
+    image="/images/lappi.jpg"
+    imageAlt="Halli Juusonkankaantiellä"
+  >
+    <div class="actions">
+      <a class="btn btn-primary" href={site.phoneHref}>Call {site.phone}</a>
+      <a class="btn btn-ghost" href={`mailto:${site.email}`}>{site.email}</a>
+      <a class="btn btn-ghost" href={withBase("/")} hreflang="fi">Suomeksi</a>
+    </div>
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <article class="card notice">
+        <h2>What we do</h2>
+        <ul class="list">
+          <li>Excavation, house and road foundations, cable trenches and drainage</li>
+          <li>Energy wood harvesting with a guillotine grapple</li>
+          <li>Property maintenance, snow work, roofs and gutter cleaning</li>
+          <li>Tool and machine rental: breakers, lifts, compactors</li>
+          <li>Keys, locks and watch battery replacement</li>
+          <li>Custom-cut glass, mirrors and plexiglass</li>
+        </ul>
+      </article>
+      <article class="card notice">
+        <h2>Visit and hours</h2>
+        <p>
+          {site.address.street}<br />
+          {site.address.postalCode} {site.address.city}, Finland
+        </p>
+        <p>Workshop open weekdays 8:00–15:00. Other times by appointment.</p>
+        <p>We work in Pello and across Lapland, including Ylitornio and Kolari.</p>
+        <p>
+          Business ID {site.yTunnus}. Postal address: {site.postalAddress.street},
+          {site.postalAddress.postalCode} {site.postalAddress.city}.
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>

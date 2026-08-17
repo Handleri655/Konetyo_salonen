@@ -1,0 +1,20 @@
+---
+import { site } from "../data/site";
+import { withBase } from "../lib/paths";
+const { title = "Tarvitsetko tekijän tontille tai hallille?" } = Astro.props;
+---
+
+<section class="section">
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h2>{title}</h2>
+        <p>Soita, laita sähköpostia tai jätä tarjouspyyntö. Palvelemme Pellossa ja liikumme tarvittaessa ympäri Lappia.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href={site.phoneHref}>Soita {site.phone}</a>
+        <a class="btn btn-ghost" href={withBase("/yhteystiedot")}>Jätä tarjouspyyntö</a>
+      </div>
+    </div>
+  </div>
+</section>

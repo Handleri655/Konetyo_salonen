@@ -1,0 +1,41 @@
+---
+import { site } from "../data/site";
+import { withBase } from "../lib/paths";
+---
+
+<form action={`https://formsubmit.co/${site.email}`} method="POST">
+  <input type="hidden" name="_subject" value="Tarjouspyyntö, konetyosalonen.fi" />
+  <input type="hidden" name="_next" value={`${site.url}/kiitos`} />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_captcha" value="true" />
+  <input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" />
+
+  <label>
+    Nimi *
+    <input type="text" name="nimi" required autocomplete="name" />
+  </label>
+  <label>
+    Sähköposti *
+    <input type="email" name="email" required autocomplete="email" />
+  </label>
+  <label>
+    Puhelin *
+    <input type="tel" name="puhelin" required autocomplete="tel" />
+  </label>
+  <label>
+    Paikkakunta
+    <input type="text" name="paikkakunta" autocomplete="address-level2" />
+  </label>
+  <label>
+    Viesti
+    <textarea name="viesti" placeholder="Kerro lyhyesti työstä, aikataulusta ja sijainnista."></textarea>
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="tietosuoja" value="Hyväksytty" required />
+    <span>
+      Hyväksyn, että yhteystietojani käytetään tarjouspyynnön käsittelyyn.
+      <a href={withBase("/tietosuoja")}>Tietosuoja</a>
+    </span>
+  </label>
+  <button class="btn btn-primary" type="submit">Lähetä tarjouspyyntö</button>
+</form>

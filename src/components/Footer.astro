@@ -1,0 +1,49 @@
+---
+import { site, services } from "../data/site";
+import { withBase } from "../lib/paths";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <h2>{site.name}</h2>
+      <p>
+        Maanrakennus, kiinteistöhuolto, konevuokraus sekä avain- ja lasipalvelut
+        Pellossa ja muualla Lapissa.
+      </p>
+      <p>
+        {site.address.street}<br />
+        {site.address.postalCode} {site.address.city}<br />
+        Y-tunnus {site.yTunnus}
+      </p>
+    </div>
+    <div>
+      <h2>Palvelut</h2>
+      <ul>
+        {
+          services.map((s) => (
+            <li>
+              <a href={withBase(`/${s.slug}`)}>{s.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div>
+      <h2>Yhteys</h2>
+      <ul>
+        <li><a href={site.phoneHref}>{site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><a href={withBase("/yhteystiedot")}>Yhteystiedot</a></li>
+        <li><a href={withBase("/en")}>In English</a></li>
+        <li><a href={withBase("/tietosuoja")}>Tietosuoja</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <span>© {year} {site.name}</span>
+    <span>{site.hours.extra}</span>
+  </div>
+</footer>
+<a class="callbar" href={site.phoneHref}>Soita {site.phone}</a>

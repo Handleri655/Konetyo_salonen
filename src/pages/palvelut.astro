@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+import PageHero from "../components/PageHero.astro";
+import { services } from "../data/site";
+import { withBase } from "../lib/paths";
+---
+
+<Layout
+  title="Palvelut | Konetyö M. Salonen Oy"
+  description="Kaivinkoneurakointi, kiinteistöhuolto, konevuokraus, avainpalvelut sekä lasit, peilit ja plexit mittatilauksena Pellossa."
+>
+  <PageHero
+    kicker="Palvelut"
+    title="Työt tontilla, talossa ja hallilla"
+    lede="Valitse palvelu tai soita suoraan. Kerromme, mitä työ vaatii, millä kalustolla se tehdään ja milloin pääsemme paikalle."
+    image="/images/hero.jpg"
+    imageAlt="Pyöräkuormaaja työssä"
+  />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid-2">
+        {
+          services.map((service) => (
+            <article class="card">
+              <a class="cover" href={withBase(`/${service.slug}`)}>
+                <img src={withBase(service.image)} alt={service.alt} width="900" height="560" />
+              </a>
+              <div class="card-body">
+                <p class="kicker">{service.kicker}</p>
+                <h2>
+                  <a href={withBase(`/${service.slug}`)}>{service.title}</a>
+                </h2>
+                <p>{service.summary}</p>
+                <ul class="list">
+                  {service.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+                <a class="card-link" href={withBase(`/${service.slug}`)}>Avaa sivu</a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Etkö ole varma, mikä palvelu sopii?" />
+</Layout>

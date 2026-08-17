@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+import PageHero from "../components/PageHero.astro";
+import { services } from "../data/site";
+import { withBase } from "../lib/paths";
+
+const service = services.find((s) => s.slug === "lasit-peilit-plexit")!;
+---
+
+<Layout
+  title="Lasit, peilit ja plexit Pello | Konetyö M. Salonen"
+  description="Lasit, peilit ja plexit mittatilauksena Pellosta. Myös hajonneiden lasien vaihto."
+  image={service.image}
+>
+  <PageHero
+    kicker={service.kicker}
+    title="Lasit, peilit ja plexit mittojen mukaan"
+    lede="Tilaa lasilevyt, peilit ja plexit hallilta Pellosta. Tuo mitat mukanasi tai kysy, miten mittaus kannattaa tehdä."
+    image={service.image}
+    imageAlt={service.alt}
+  />
+
+  <section class="section">
+    <div class="wrap split">
+      <img src={withBase(service.image)} alt={service.alt} width="1600" height="1066" />
+      <div>
+        <h2>Mittatilaus ilman erillistä lasiliikettä kaukaa</h2>
+        <p>
+          Hajonnut ikkuna, uusi peili tai plexi työmaalle: teemme tilauksen mittojen mukaan.
+          Kysy toimitusaika ja nouto hallilta.
+        </p>
+        <ul class="list">
+          {service.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Kysy lasia, peiliä tai plexiä" />
+</Layout>

@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CtaBand from "../components/CtaBand.astro";
+import PageHero from "../components/PageHero.astro";
+import { services } from "../data/site";
+import { withBase } from "../lib/paths";
+
+const service = services.find((s) => s.slug === "konevuokraus")!;
+---
+
+<Layout
+  title="Konevuokraus Pello | Konetyö M. Salonen"
+  description="Vuokraa poravasara, piikkauskone, henkilönostin tai maantiivistäjä Pellosta. Kysy saatavuus ja nouto hallilta."
+  image={service.image}
+>
+  <PageHero
+    kicker={service.kicker}
+    title="Koneet ja laitteet vuokralle"
+    lede="Hallilta Pellosta saat työkoneita ja -laitteita omaan projektiin. Soita ja varmista saatavuus ennen noutoa."
+    image={service.image}
+    imageAlt={service.alt}
+  />
+
+  <section class="section">
+    <div class="wrap split">
+      <img src={withBase(service.image)} alt={service.alt} width="1600" height="1066" />
+      <div>
+        <h2>Vuokraa, kun et tarvitse konetta omaksi</h2>
+        <p>
+          Konevuokraus sopii lyhyeen urakkaan, remonttiin tai tilanteeseen, jossa oma kalusto ei riitä.
+          Kerro mitä työtä teet, niin ehdotamme sopivaa laitetta.
+        </p>
+        <ul class="list">
+          {service.items.map((item) => <li>{item}</li>)}
+        </ul>
+        <p>Nouto Juusonkankaantieltä. Halli avoinna arkisin klo 8–15, muina aikoina sopimalla.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Kysy vuokrakaluston saatavuutta" />
+</Layout>
